@@ -35,8 +35,7 @@ func main() {
 
 	var gameNames, prices, urls, imageUrls []*cdp.Node
 	if err := chromedp.Run(ctx,
-		chromedp.Navigate("https://store.epicgames.com/en-US"),
-		chromedp.WaitVisible(`[data-testid="direction-auto"]`),
+		chromedp.Navigate("https://store.epicgames.com/en-US/free-games"),
 		chromedp.Nodes(`[data-testid="direction-auto"]`, &gameNames),
 		chromedp.Nodes(`[data-testid="offer-title-info-subtitle"]`, &prices),
 		chromedp.Nodes(`[data-testid="offer-card-image-portrait"] img`, &imageUrls),
