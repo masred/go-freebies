@@ -44,7 +44,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	var freeNowGames, freeGamesSoon []Game
+	var freeNowGames []Game
 	for i := range gameNames {
 		var game Game
 
@@ -70,11 +70,8 @@ func main() {
 			}
 		}
 
-		switch {
-		case strings.Contains(game.Price, "Free Now"):
+		if strings.Contains(game.Price, "Free Now") {
 			freeNowGames = append(freeNowGames, game)
-		case strings.Contains(game.Price, "Free"):
-			freeGamesSoon = append(freeGamesSoon, game)
 		}
 	}
 
@@ -82,10 +79,5 @@ func main() {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	freeGamesSoonJson, err := json.Marshal(freeGamesSoon)
-	if err != nil {
-		log.Fatalln(err)
-	}
 	fmt.Println(string(freeNowGamesJson))
-	fmt.Println(string(freeGamesSoonJson))
 }
